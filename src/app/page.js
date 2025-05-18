@@ -338,7 +338,7 @@ export default function Home() {
                 "Name",
                 "Phone",
                 "Email",
-                "Tasks",
+                // "Tasks",
                 "View Task",
                 "Actions",
               ].map((col) => (
@@ -369,7 +369,7 @@ export default function Home() {
                 <td className="px-4 py-3 text-sm text-gray-700">
                   {agent.email}
                 </td>
-                <td className="px-4 py-3">
+                {/* <td className="px-4 py-3">
                   {taskResult.length > 0 ? (
                     <span className="inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-500">
                       {
@@ -384,7 +384,7 @@ export default function Home() {
                       0
                     </span>
                   )}
-                </td>
+                </td> */}
                 <td className="px-4 py-3">
                   <span
                     onClick={() => handleSingleTaskView(agent._id)}
