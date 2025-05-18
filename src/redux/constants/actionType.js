@@ -19,3 +19,10 @@ export const FETCH_AGENTS = "FETCH_AGENTS ";
 export const FETCH_AGENT_ID = " FETCH_AGENT_ID ";
 export const UPDATE_AGENT = "  UPDATE_AGENT ";
 export const DELETE_AGENT = "DELETE_AGENT";
+
+// LIST
+export const CREATE_LIST = "CREATE_LIST ";
+export const FETCH_LISTS = "FETCH_LISTS ";
+export const FETCH_LIST_ID = " FETCH_LIST_ID ";
+export const UPDATE_LIST = "  UPDATE_LIST ";
+export const DELETE_LIST = "DELETE_LIST";

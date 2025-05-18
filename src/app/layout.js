@@ -1,25 +1,21 @@
-import { Geist, Geist_Mono } from "next/font/google";
+"use client";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-
-
+import { Provider } from "react-redux";
+import { thunk } from "redux-thunk";
+import rootReducer from "../redux/reducers/index";
+import { createStore, applyMiddleware, compose } from "redux";
+import { ToastContainer } from "react-toastify";
+const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body>
+        <Provider store={store}>
+          <ToastContainer />
+
+          {children}
+        </Provider>
+        {/* <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script> */}
       </body>
     </html>
   );

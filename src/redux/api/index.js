@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8300/api/v1",
+  baseURL: "https://admin-agent-server.onrender.com/api/v1",
 });
 
 API.interceptors.request.use((req) => {
@@ -21,7 +21,15 @@ export const deleteTask = (id) => API.delete(`/task/${id}`);
 export const updateTask = (id, updatedTask) =>
   API.put(`/task/${id}`, updatedTask);
 
-// Tasks
+// List
+export const fetchList = () => API.get(`/list`);
+export const fetchListByID = (id) => API.get(`/list/${id}`);
+export const createList = (newList) => API.post("/list", newList);
+export const deleteList = (id) => API.delete(`/list/${id}`);
+export const updateList = (id, updatedList) =>
+  API.put(`/list/${id}`, updatedList);
+
+// Agents
 export const fetchAgent = () => API.get(`/agent`);
 export const fetchAgentByID = (id) => API.get(`/agent/${id}`);
 export const createAgent = (newAgent) => API.post("/agent", newAgent);
