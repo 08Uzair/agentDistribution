@@ -1,16 +1,16 @@
 import * as api from "../api";
 import {
-  FETCHLISTS,
-  CREATELIST,
-  FETCHLIST_ID,
-  UPDATELIST,
-  DELETELIST,
+  FETCH_LISTS,
+  CREATE_LIST,
+  FETCH_LIST_ID,
+  UPDATE_LIST,
+  DELETE_LIST,
 } from "../constants/actionType";
 
 export const getLists = () => async (dispatch) => {
   try {
     const { data } = await api.fetchList();
-    dispatch({ type: FETCHLISTS, payload: data });
+    dispatch({ type: FETCH_LISTS, payload: data });
   } catch (error) {
     console.log(error);
   }
@@ -32,7 +32,7 @@ export const getUserLists = (id) => async (dispatch) => {
 export const createList = (list) => async (dispatch) => {
   try {
     const { data } = await api.createList(list);
-    dispatch({ type: CREATELIST, payload: data });
+    dispatch({ type: CREATE_LIST, payload: data });
   } catch (error) {
     console.log(error);
   }
@@ -41,7 +41,7 @@ export const createList = (list) => async (dispatch) => {
 export const getListById = (id) => async (dispatch) => {
   try {
     const { data } = await api.fetchListByID(id);
-    dispatch({ type: FETCHLIST_ID, payload: data });
+    dispatch({ type: FETCH_LIST_ID, payload: data });
   } catch (error) {
     console.log(error);
   }
@@ -51,7 +51,7 @@ export const updateList = (id, updatedList) => async (dispatch) => {
   try {
     console.log(updatedList);
     const { data } = await api.updateList(id, updatedList);
-    dispatch({ type: UPDATELIST, payload: data });
+    dispatch({ type: UPDATE_LIST, payload: data });
   } catch (error) {
     console.log(error);
   }
@@ -60,7 +60,7 @@ export const updateList = (id, updatedList) => async (dispatch) => {
 export const deleteList = (id) => async (dispatch) => {
   try {
     await api.deleteList(id);
-    dispatch({ type: DELETELIST, payload: id });
+    dispatch({ type: DELETE_LIST, payload: id });
   } catch (error) {
     console.log(error);
   }
