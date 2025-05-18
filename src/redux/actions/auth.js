@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import * as api from "../api";
 import {
   AUTH,
@@ -9,8 +10,10 @@ import {
 export const signin = (newUser) => async (dispatch) => {
   try {
     const { data } = await api.signIn(newUser);
+    toast.success("Login Successfully");
     dispatch({ type: AUTH, payload: data });
   } catch (error) {
+    toast.error("Invalid Credentials");
     console.log(error);
   }
 };
@@ -19,7 +22,9 @@ export const signup = (newUser) => async (dispatch) => {
   try {
     const { data } = await api.signUp(newUser);
     dispatch({ type: AUTH, payload: data });
+    toast.success("Account Created Successfully");
   } catch (error) {
+    toast.error("Invalid Credentials");
     console.log(error);
   }
 };

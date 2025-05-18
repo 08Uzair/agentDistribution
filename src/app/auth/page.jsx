@@ -46,14 +46,14 @@ export default function AuthForm() {
       console.log("Sign Up:", signUpForm);
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 4000);
       // Sign up logic here
     } else {
       dispatch(signin(signInForm));
       console.log("Sign In:", signInForm);
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 4000);
 
       // Sign in logic here
     }
