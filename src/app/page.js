@@ -89,10 +89,12 @@ export default function Home() {
       // Update existing agent
       dispatch(updateAgent(editingAgentId, editFormData));
       toast.success("Agent updated successfully!");
+      dispatch(getAgents());
     } else {
       // Create new agent
       dispatch(createAgent(formData));
       toast.success("Agent created successfully!");
+      dispatch(getAgents());
     }
     // Reset states and close modal
     setFormData({ name: "", email: "", phone: "", password: "" });
@@ -187,8 +189,8 @@ export default function Home() {
 
   const handleDelete = (id) => {
     dispatch(deleteAgent(id));
-    dispatch(getAgents());
     toast.success("Agent deleted successfully!");
+    dispatch(getAgents());
   };
 
   return (
