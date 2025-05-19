@@ -57,23 +57,26 @@ export default function TaskListTable() {
                 Task Group #{groupIndex + 1}
               </h3>
               <p className="text-gray-700">
-                📄 <span className="font-medium">File Name:</span>{" "}
+                 <span className="font-medium">File Name:</span>{" "}
+                <span className="p-[7px] bg-gray-200 rounded-[15px]">
+
                 {taskGroup.fileName}
+                </span>
               </p>
               <p className="text-gray-700">
-                🔗 <span className="font-medium">File Link:</span>{" "}
+                 <span className="font-medium">File Link:</span>{" "}
                 <a
                   href={taskGroup.fileLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 underline hover:text-blue-800"
+                  className="text-blue-600 underline hover:text-blue-800 "
                 >
                   View File
                 </a>
               </p>
             </div>
             <div>
-              <p className="text-gray-700">
+              <p className="text-gray-700 p-[7px] bg-gray-200 rounded-[15px]">
                 <FormattedDate dateString={taskGroup.createdAt} />
               </p>
             </div>
@@ -83,14 +86,16 @@ export default function TaskListTable() {
             <table className="w-full bg-white text-sm text-left">
               <thead className="bg-gray-100 text-gray-700 font-semibold">
                 <tr>
+                  <th className="px-4 py-3">Sr.no</th>
                   <th className="px-4 py-3">Name</th>
                   <th className="px-4 py-3">Phone</th>
                   <th className="px-4 py-3">Notes</th>
                 </tr>
               </thead>
               <tbody>
-                {taskGroup.taskList.map((task, index) => (
+                {taskGroup.taskList.map((task, index) => ( 
                   <tr key={index} className="border-b hover:bg-blue-50">
+                    <td className="px-4 py-3">{index+1}</td>
                     <td className="px-4 py-3">{task.FirstName}</td>
                     <td className="px-4 py-3">{task.Phone}</td>
                     <td className="px-4 py-3">{task.Notes}</td>
