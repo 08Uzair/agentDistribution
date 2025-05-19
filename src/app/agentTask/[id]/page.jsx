@@ -4,7 +4,7 @@ import { getUserLists } from "@/redux/actions/list";
 import FormattedDate from "@/utility/FormattedDate";
 import Loader from "@/utility/Loader";
 // import { Loader } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -12,7 +12,7 @@ export default function TaskListTable() {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const { id } = useParams();
-
+  const router = useRouter();
   useEffect(() => {
     const fetchData = async () => {
       const listData = await dispatch(getUserLists(id));
@@ -21,7 +21,12 @@ export default function TaskListTable() {
     };
     fetchData();
   }, [dispatch, id]);
-
+  useEffect(() => {
+    const profile = JSON.parse(localStorage.getItem("profile"));
+    if (!profile) {
+      router.push("/auth");
+    }
+  }, [router]);
   if (!data || data.length === 0) {
     // return <div className="w-full h-screen bg-white flex items-center justify-center "><Loader className="w-10 h-10"/> </div>;
     return (
