@@ -1,6 +1,9 @@
 "use client";
 
 import { getUserLists } from "@/redux/actions/list";
+import FormattedDate from "@/utility/FormattedDate";
+import Loader from "@/utility/Loader";
+// import { Loader } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -20,7 +23,12 @@ export default function TaskListTable() {
   }, [dispatch, id]);
 
   if (!data || data.length === 0) {
-    return <div className="p-6">No task data found.</div>;
+    // return <div className="w-full h-screen bg-white flex items-center justify-center "><Loader className="w-10 h-10"/> </div>;
+    return (
+      <div className="w-full h-screen bg-white flex items-center justify-center ">
+        <Loader />{" "}
+      </div>
+    );
   }
 
   const assignedTo = data?.[0]?.assignedTo;
@@ -36,27 +44,34 @@ export default function TaskListTable() {
         </p>
       </div>
 
-      {data.map((taskGroup, groupIndex) => (
+      {[...data].reverse().map((taskGroup, groupIndex) => (
         <div key={taskGroup._id} className="space-y-2">
-          <div className="space-y-1">
-            <h3 className="text-lg font-semibold text-blue-700">
-              Task Group #{groupIndex + 1}
-            </h3>
-            <p className="text-gray-700">
-              📄 <span className="font-medium">File Name:</span>{" "}
-              {taskGroup.fileName}
-            </p>
-            <p className="text-gray-700">
-              🔗 <span className="font-medium">File Link:</span>{" "}
-              <a
-                href={taskGroup.fileLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 underline hover:text-blue-800"
-              >
-                View File
-              </a>
-            </p>
+          <div className="flex items-center justify-between bg-gray-100 p-4 rounded-lg shadow">
+            <div className="space-y-1">
+              <h3 className="text-lg font-semibold text-blue-700">
+                Task Group #{groupIndex + 1}
+              </h3>
+              <p className="text-gray-700">
+                📄 <span className="font-medium">File Name:</span>{" "}
+                {taskGroup.fileName}
+              </p>
+              <p className="text-gray-700">
+                🔗 <span className="font-medium">File Link:</span>{" "}
+                <a
+                  href={taskGroup.fileLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline hover:text-blue-800"
+                >
+                  View File
+                </a>
+              </p>
+            </div>
+            <div>
+              <p className="text-gray-700">
+                <FormattedDate dateString={taskGroup.createdAt} />
+              </p>
+            </div>
           </div>
 
           <div className="overflow-x-auto rounded-xl shadow">
