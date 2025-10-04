@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://admin-agent-server.onrender.com/api/v1",
+  baseURL: "https://admin-agent-server-iilm.onrender.com/api/v1",
 });
 
 API.interceptors.request.use((req) => {
